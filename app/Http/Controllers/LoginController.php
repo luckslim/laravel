@@ -20,7 +20,7 @@ class LoginController extends Controller
         ]
     
         );
-        if(Auth::attempt($credenciais)){
+        if(Auth::attempt($credenciais, $request->remember)){
             $request->session()->regenerate();
             return redirect()->intended('/admin/dashboard');
 
@@ -28,5 +28,14 @@ class LoginController extends Controller
             return redirect()->back()->with('erro','email ou senha invalida!');
         }
 
+    }
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect(route('site.index'));
+    }
+    public function create(){
+        return view('create');
     }
 }

@@ -13,7 +13,13 @@
     <form action="{{route('login.auth')}}" method="post">
         @csrf
         login: <input name="email">
-        senha: <input name="password">
-        <button type="submit">Entrar</button>
-    </form>
+        senha: <input name="password"><br>
+        <button type="submit">Entrar</button>lembrar-me
+        <input type="checkbox" name="remember">
+    </form> 
+
+
+    <p>Ainda não tem um cadastro?<a href="{{route('login.create')}}">Faça aqui!</a></p>
+
+
 @endsection
