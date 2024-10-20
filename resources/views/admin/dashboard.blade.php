@@ -14,7 +14,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Produtos</a>
+            <a class="nav-link" href="{{route('site.carrinho')}}">Carrinho</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" aria-disabled="true">Categorias</a>
@@ -45,8 +45,16 @@
                     <p class="card-text">{{$produto->descrição}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Add To Cart</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <form action="{{ route('site.addcarrinho') }}" method="post">
+                          @csrf
+                          <input type="hidden" name="id" value="{{$produto->id}}">
+                          <input type="hidden" name="name" value="{{$produto->nome}}">
+                          <input type="hidden" name="price" value="{{$produto->preco}}">
+                          <input type="hidden" name="img" value="{{$produto->imagem}}">
+                          <input type="number" name="qnt" value="1">
+                          <button type="submit" class="btn btn-sm btn-outline-secondary">Add To Cart</button>
+                        </form>
+                        <a href="{{route('site.details', $produto->slug)}}"class="btn btn-sm btn-outline-secondary">View</a>
                         </div>
                         <small class="text-body-secondary">R${{$produto->preco}}</small>
                     </div>

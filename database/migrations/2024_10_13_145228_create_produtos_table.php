@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nome');
             $table ->text('descrição');
             $table->double('preco',10,2);
+            $table->string('slug');
             $table->string('imagem');
             $table->timestamps();
         });
